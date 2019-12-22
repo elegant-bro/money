@@ -1,0 +1,13 @@
+image: php:7.1-cli-alpine
+
+cache:
+  key: composer
+  paths:
+    - vendor
+
+before_script:
+  - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+test:
+  script:
+    - ./vendor/bin/phpunit

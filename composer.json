@@ -1,0 +1,46 @@
+{
+  "name": "elegant-bro/money",
+  "license": [
+    "MIT"
+  ],
+  "authors": [
+    {
+      "name": "Pavel Stepanets",
+      "email": "pahhan.ne@gmail.com"
+    },
+    {
+      "name": "Dmitry Anikeev",
+      "email": "anikeev.dmitry@outlook.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "ext-json": "*",
+    "ext-bcmath": "*",
+    "elegant-bro/interfaces": "^0.1.0"
+  },
+  "require-dev": {
+    "ext-simplexml": "*",
+    "phpunit/phpunit": "^5.7 || ^6.4 || ^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ElegantBro\\Money\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ElegantBro\\Money\\Tests\\": "tests"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "7.1.27"
+    },
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}
