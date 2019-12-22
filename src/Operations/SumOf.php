@@ -12,24 +12,31 @@ use ElegantBro\Money\Currency;
 use ElegantBro\Money\Ensure\EqualCurrencies;
 use ElegantBro\Money\Money;
 use Exception;
+use function array_map;
+use function array_reduce;
 use function bcadd;
 
 final class SumOf implements Money
 {
     /**
-     * @var Money
+     * @var Money[]
      */
-    private $x;
+    private $monies;
 
     /**
-     * @var Money
+     * @var EqualCurrencies
      */
-    private $y;
+    private $currency;
 
-    public function __construct(Money $x, Money $y)
+    public function __construct(Money ...$monies)
     {
-        $this->x = $x;
-        $this->y = $y;
+        $this->monies = $monies;
+        $this->currency = new EqualCurrencies(
+            ...array_map(
+                static function (Money $m) { return $m->currency(); }
+                , $this->monies
+            )
+        );
     }
 
     /**
@@ -38,18 +45,18 @@ final class SumOf implements Money
      */
     public function amount(): string
     {
-        (new EqualCurrencies(
-            $this->x->currency(),
-            $this->y->currency())
-        )->asString();
-        return bcadd($this->x->amount(), $this->y->amount(), 4);
+        $this->currency->asString();
+        return (string)array_reduce(
+            $this->monies,
+            static function (string $sum, Money $m) {
+                return bcadd($sum, $m->amount(), 4);
+            },
+            '0'
+        );
     }
 
     public function currency(): Currency
     {
-        return new EqualCurrencies(
-            $this->x->currency(),
-            $this->y->currency()
-        );
+        return $this->currency;
     }
 }

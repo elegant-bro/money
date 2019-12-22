@@ -6,7 +6,6 @@
 
 namespace ElegantBro\Money;
 
-use ElegantBro\Money\Ensure\IsoCurrency;
 use InvalidArgumentException;
 use function is_numeric;
 
@@ -18,17 +17,17 @@ final class JustMoney implements Money
     private $amount;
 
     /**
-     * @var string
+     * @var Currency
      */
     private $currency;
 
-    public function __construct(string $amount, string $currency)
+    public function __construct(string $amount, Currency $currency)
     {
         if (!is_numeric($amount)) {
             throw new InvalidArgumentException("Amount must be numeric, $amount given");
         }
         $this->amount = $amount;
-        $this->currency = new IsoCurrency($currency);
+        $this->currency = $currency;
     }
 
     public function amount(): string

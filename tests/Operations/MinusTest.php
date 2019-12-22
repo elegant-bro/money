@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * @author Pavel Stepanets <pahhan.ne@gmail.com>
  * @author Artem Dekhtyar <m@artemd.ru>
@@ -8,14 +6,13 @@ declare(strict_types=1);
 
 namespace ElegantBro\Money\Tests\Operations;
 
-use ElegantBro\Money\Currencies\USD;
-use ElegantBro\Money\JustMoney;
-use ElegantBro\Money\Operations\SumOf;
+
+use ElegantBro\Money\Operations\Minus;
 use ElegantBro\Money\Tests\Stub\FiveAndHalfDollars;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
-final class SumOfTest extends TestCase
+final class MinusTest extends TestCase
 {
     /**
      * @throws Exception
@@ -23,17 +20,15 @@ final class SumOfTest extends TestCase
     public function testAmountCurrency(): void
     {
         $this->assertEquals(
-            '7.7000',
-            ($s = new SumOf(
-                new JustMoney('1', new USD()),
-                new JustMoney('1.2', new USD()),
+            '-5.5',
+            ($n = new Minus(
                 new FiveAndHalfDollars()
             ))->amount()
         );
 
         $this->assertEquals(
             'USD',
-            $s->currency()->asString()
+            $n->currency()->asString()
         );
     }
 }

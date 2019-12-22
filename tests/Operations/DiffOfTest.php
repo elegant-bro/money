@@ -10,12 +10,11 @@ namespace ElegantBro\Money\Tests\Operations;
 
 use ElegantBro\Money\Currencies\USD;
 use ElegantBro\Money\JustMoney;
-use ElegantBro\Money\Operations\SumOf;
-use ElegantBro\Money\Tests\Stub\FiveAndHalfDollars;
+use ElegantBro\Money\Operations\DiffOf;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
-final class SumOfTest extends TestCase
+final class DiffOfTest extends TestCase
 {
     /**
      * @throws Exception
@@ -23,11 +22,10 @@ final class SumOfTest extends TestCase
     public function testAmountCurrency(): void
     {
         $this->assertEquals(
-            '7.7000',
-            ($s = new SumOf(
+            '-0.2333',
+            ($s = new DiffOf(
                 new JustMoney('1', new USD()),
-                new JustMoney('1.2', new USD()),
-                new FiveAndHalfDollars()
+                new JustMoney('1.2333', new USD())
             ))->amount()
         );
 

@@ -24,7 +24,7 @@ final class DiffOf implements Money
     {
         $this->origin = new SumOf(
             $x,
-            new Negative($y)
+            new Minus($y)
         );
     }
 
