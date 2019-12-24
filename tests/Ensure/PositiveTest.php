@@ -1,11 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * @author Pavel Stepanets <pahhan.ne@gmail.com>
  * @author Artem Dekhtyar <m@artemd.ru>
  */
 
 namespace ElegantBro\Money\Tests\Ensure;
-
 
 use ElegantBro\Money\Ensure\Positive;
 use ElegantBro\Money\Operations\Minus;
@@ -20,7 +21,7 @@ final class PositiveTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testAmountCurrency(): void 
+    public function testAmountCurrency(): void
     {
         $this->assertEquals(
             'EUR',

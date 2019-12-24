@@ -33,8 +33,10 @@ final class SumOf implements Money
         $this->monies = $monies;
         $this->currency = new EqualCurrencies(
             ...array_map(
-                static function (Money $m) { return $m->currency(); }
-                , $this->monies
+                static function (Money $m) {
+                    return $m->currency();
+                },
+                $this->monies
             )
         );
     }

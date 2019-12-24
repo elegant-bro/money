@@ -12,5 +12,4 @@ use ElegantBro\Interfaces\Stringify;
 
 interface Currency extends Stringify
 {
-
 }

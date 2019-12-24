@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace ElegantBro\Money\Operations;
 
-
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
 use Exception;
