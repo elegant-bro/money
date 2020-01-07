@@ -8,11 +8,10 @@ declare(strict_types=1);
 
 namespace ElegantBro\Money\Ensure;
 
-
-use function array_slice;
 use ElegantBro\Money\Currency;
 use Exception;
 use LogicException;
+use function array_slice;
 
 final class EqualCurrencies implements Currency
 {

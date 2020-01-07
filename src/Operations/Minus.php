@@ -8,11 +8,11 @@ declare(strict_types=1);
 
 namespace ElegantBro\Money\Operations;
 
-use function bcmul;
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
+use function bcmul;
 
-final class Negative implements Money
+final class Minus implements Money
 {
     /**
      * @var Money
@@ -26,7 +26,7 @@ final class Negative implements Money
 
     public function amount(): string
     {
-        return bcmul(-1, $this->origin->amount(), 4);
+        return bcmul('-1', $this->origin->amount(), 4);
     }
 
     public function currency(): Currency

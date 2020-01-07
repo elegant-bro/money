@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace ElegantBro\Money\Operations;
 
-
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
 use Exception;
@@ -24,7 +23,7 @@ final class DiffOf implements Money
     {
         $this->origin = new SumOf(
             $x,
-            new Negative($y)
+            new Minus($y)
         );
     }
 

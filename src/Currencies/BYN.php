@@ -10,10 +10,10 @@ namespace ElegantBro\Money\Currencies;
 
 use ElegantBro\Money\Currency;
 
-final class USD implements Currency
+final class BYN implements Currency
 {
     public function asString(): string
     {
-        return 'USD';
+        return 'BYN';
     }
 }
