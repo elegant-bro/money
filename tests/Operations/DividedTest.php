@@ -52,8 +52,8 @@ final class DividedTest extends TestCase
     public function testInvalidDenominator(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Denominator must be numeric, Array given');
-        new Divided(new FiveAndHalfDollars(), []);
+        $this->expectExceptionMessage('Denominator must be numeric, Foo given');
+        new Divided(new FiveAndHalfDollars(), 'Foo');
     }
 
     public function testZeroDenominator(): void

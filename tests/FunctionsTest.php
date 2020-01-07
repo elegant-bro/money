@@ -42,6 +42,7 @@ final class FunctionsTest extends TestCase
     public function testMoneyInvalidAmount(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        money([], 'USD');
+        $this->expectExceptionMessage('Amount must be numeric, Baz given');
+        money('Baz', 'USD');
     }
 }

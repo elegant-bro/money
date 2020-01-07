@@ -15,7 +15,6 @@
   ],
   "require": {
     "php": "^7.1",
-    "ext-json": "*",
     "ext-bcmath": "*",
     "elegant-bro/interfaces": "^0.1.0"
   },
