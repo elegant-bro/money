@@ -10,7 +10,7 @@ namespace ElegantBro\Money\Tests\Ensure;
 
 use ElegantBro\Money\Ensure\Positive;
 use ElegantBro\Money\Operations\Minus;
-use ElegantBro\Money\Tests\Stub\ThreeEoru;
+use ElegantBro\Money\Tests\Stub\ThreeEuro;
 use ElegantBro\Money\Tests\Stub\ZeroBelarusRuble;
 use Exception;
 use LogicException;
@@ -26,7 +26,7 @@ final class PositiveTest extends TestCase
         $this->assertEquals(
             'EUR',
             ($m = new Positive(
-                new ThreeEoru()
+                new ThreeEuro()
             ))->currency()->asString()
         );
         
@@ -48,7 +48,7 @@ final class PositiveTest extends TestCase
         $this->expectException(LogicException::class);
         (new Positive(
             new Minus(
-                new ThreeEoru()
+                new ThreeEuro()
             )
         ))->amount();
     }
