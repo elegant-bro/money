@@ -8,11 +8,11 @@ declare(strict_types=1);
 
 namespace ElegantBro\Money\Tests\Stub;
 
-use ElegantBro\Money\Currencies\EUR;
+use ElegantBro\Money\Currencies\RUB;
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
 
-final class ThreeEoru implements Money
+final class ThreeRubles implements Money
 {
     public function amount(): string
     {
@@ -21,6 +21,6 @@ final class ThreeEoru implements Money
 
     public function currency(): Currency
     {
-        return new EUR();
+        return new RUB();
     }
 }
