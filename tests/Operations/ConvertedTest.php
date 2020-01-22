@@ -9,10 +9,13 @@ declare(strict_types=1);
 namespace ElegantBro\Money\Tests\Operations;
 
 use ElegantBro\Money\Currencies\USD;
+use ElegantBro\Money\Currency;
 use ElegantBro\Money\Operations\Converted;
-use ElegantBro\Money\Tests\Stub\StubRatio;
+use ElegantBro\Money\Ratio;
+use ElegantBro\Money\Tests\Stub\JustNumeric;
 use ElegantBro\Money\Tests\Stub\ThreeRubles;
 use Exception;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class ConvertedTest extends TestCase
@@ -22,12 +25,28 @@ final class ConvertedTest extends TestCase
      */
     public function test(): void
     {
+        /** @var Ratio & MockObject $ratio */
+        $ratio = $this->getMockForAbstractClass(Ratio::class);
+        $ratio->expects(self::once())
+            ->method('of')
+            ->with(
+                $this->callback(static function (Currency $arg) {
+                    return $arg->asString() === 'RUB';
+                }),
+                $this->callback(static function (Currency $arg) {
+                    return $arg->asString() === 'USD';
+                })
+            )
+            ->willReturn(
+                new JustNumeric('0.016')
+            );
+
         $this->assertEquals(
             0.048,
             ($c = new Converted(
                 new ThreeRubles(),
                 new USD(),
-                new StubRatio('0.016')
+                $ratio
             ))->amount()
         );
 
