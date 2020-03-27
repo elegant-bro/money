@@ -27,23 +27,29 @@ final class Divided implements Money
      */
     private $denominator;
 
-    public function __construct(Money $money, $denominator)
+    /**
+     * @var int
+     */
+    private $scale;
+
+    public function __construct(Money $money, string $denominator, int $scale)
     {
         if (!is_numeric($denominator)) {
             throw new InvalidArgumentException("Denominator must be numeric, $denominator given");
         }
-        $this->denominator = (string)$denominator;
+        $this->denominator = $denominator;
 
         if (bccomp($this->denominator, '0') === 0) {
             throw new InvalidArgumentException('Denominator must not be zero');
         }
 
         $this->money = $money;
+        $this->scale = $scale;
     }
 
     public function amount(): string
     {
-        return bcdiv($this->money->amount(), $this->denominator, 4);
+        return bcdiv($this->money->amount(), $this->denominator, $this->scale);
     }
 
     public function currency(): Currency

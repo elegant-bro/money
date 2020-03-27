@@ -26,10 +26,16 @@ final class RateOf implements Numeric
      */
     private $minor;
 
-    public function __construct(Money $base, Money $minor)
+    /**
+     * @var int
+     */
+    private $scale;
+
+    public function __construct(Money $base, Money $minor, int $scale)
     {
         $this->base = $base;
         $this->minor = $minor;
+        $this->scale = $scale;
     }
 
     /**
@@ -43,6 +49,6 @@ final class RateOf implements Numeric
             $this->minor->currency()
         ))->asString();
 
-        return bcdiv($this->base->amount(), $this->minor->amount(), 8);
+        return bcdiv($this->base->amount(), $this->minor->amount(), $this->scale);
     }
 }

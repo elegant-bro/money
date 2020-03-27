@@ -19,12 +19,9 @@ final class DiffOf implements Money
      */
     private $origin;
 
-    public function __construct(Money $x, Money $y)
+    public function __construct(Money $x, Money $y, int $scale)
     {
-        $this->origin = new SumOf(
-            $x,
-            new Minus($y)
-        );
+        $this->origin = SumOf::two($x, new Minus($y), $scale);
     }
 
     /**

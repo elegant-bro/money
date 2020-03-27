@@ -4,7 +4,7 @@
 # Tests
 Install dependencies
 
-`docker run --rm -ti -v $PWD:/app composer install`
+`docker run --rm -ti -v $PWD:/app composer install --ignore-platform-reqs`
 
 Run tests
 

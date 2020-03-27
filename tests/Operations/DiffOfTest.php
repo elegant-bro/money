@@ -25,7 +25,8 @@ final class DiffOfTest extends TestCase
             '-0.2333',
             ($s = new DiffOf(
                 new JustMoney('1', new USD()),
-                new JustMoney('1.2333', new USD())
+                new JustMoney('1.2333', new USD()),
+                4
             ))->amount()
         );
 

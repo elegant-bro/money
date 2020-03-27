@@ -28,7 +28,17 @@ final class SumOf implements Money
      */
     private $currency;
 
-    public function __construct(Money ...$monies)
+    /**
+     * @var int
+     */
+    private $scale;
+
+    public static function two(Money $x, Money $y, int $scale): SumOf
+    {
+        return new SumOf([$x, $y], $scale);
+    }
+
+    public function __construct(array $monies, int $scale)
     {
         $this->monies = $monies;
         $this->currency = new EqualCurrencies(
@@ -39,6 +49,7 @@ final class SumOf implements Money
                 $this->monies
             )
         );
+        $this->scale = $scale;
     }
 
     /**
@@ -50,8 +61,8 @@ final class SumOf implements Money
         $this->currency->asString();
         return (string)array_reduce(
             $this->monies,
-            static function (string $sum, Money $m) {
-                return bcadd($sum, $m->amount(), 4);
+            function (string $sum, Money $m) {
+                return bcadd($sum, $m->amount(), $this->scale);
             },
             '0'
         );

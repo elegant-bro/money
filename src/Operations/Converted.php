@@ -31,11 +31,17 @@ final class Converted implements Money
      */
     private $ratio;
 
-    public function __construct(Money $origin, Currency $target, Ratio $ratio)
+    /**
+     * @var int
+     */
+    private $scale;
+
+    public function __construct(Money $origin, Currency $target, Ratio $ratio, int $scale)
     {
         $this->origin = $origin;
         $this->target = $target;
         $this->ratio = $ratio;
+        $this->scale = $scale;
     }
 
     /**
@@ -49,7 +55,7 @@ final class Converted implements Money
             $this->ratio
                 ->of($this->origin->currency(), $this->target)
                 ->asNumber(),
-            4
+            $this->scale
         );
     }
 

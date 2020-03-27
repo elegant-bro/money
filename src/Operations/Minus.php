@@ -10,7 +10,8 @@ namespace ElegantBro\Money\Operations;
 
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
-use function bcmul;
+use function ltrim;
+use function strpos;
 
 final class Minus implements Money
 {
@@ -26,7 +27,10 @@ final class Minus implements Money
 
     public function amount(): string
     {
-        return bcmul('-1', $this->origin->amount(), 4);
+        if (0 === strpos($amount = $this->origin->amount(), '-')) {
+            return ltrim($amount, '-');
+        }
+        return "-$amount";
     }
 
     public function currency(): Currency

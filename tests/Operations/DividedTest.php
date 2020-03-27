@@ -26,7 +26,8 @@ final class DividedTest extends TestCase
             '1.8333',
             ($p = new Divided(
                 new FiveAndHalfDollars(),
-                3
+                '3',
+                4
             ))->amount()
         );
 
@@ -39,7 +40,8 @@ final class DividedTest extends TestCase
             '0.0000',
             ($b = new Divided(
                 new ZeroBelarusRuble(),
-                '15'
+                '15',
+                4
             ))->amount()
         );
 
@@ -53,13 +55,13 @@ final class DividedTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Denominator must be numeric, Foo given');
-        new Divided(new FiveAndHalfDollars(), 'Foo');
+        new Divided(new FiveAndHalfDollars(), 'Foo', 4);
     }
 
     public function testZeroDenominator(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Denominator must not be zero');
-        new Divided(new FiveAndHalfDollars(), 0);
+        new Divided(new FiveAndHalfDollars(), '0', 4);
     }
 }

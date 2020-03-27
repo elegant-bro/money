@@ -25,9 +25,12 @@ final class SumOfTest extends TestCase
         $this->assertEquals(
             '7.7000',
             ($s = new SumOf(
-                new JustMoney('1', new USD()),
-                new JustMoney('1.2', new USD()),
-                new FiveAndHalfDollars()
+                [
+                    new JustMoney('1', new USD()),
+                    new JustMoney('1.2', new USD()),
+                    new FiveAndHalfDollars()
+                ],
+                4
             ))->amount()
         );
 
