@@ -53,7 +53,7 @@ final class MultipliedTest extends TestCase
             ($p = new Multiplied(
                 new FiveAndHalfDollars(),
                 '.5',
-                4
+                2
             ))->amount()
         );
 
@@ -63,7 +63,7 @@ final class MultipliedTest extends TestCase
         );
 
         $this->assertEquals(
-            4,
+            2,
             $p->scale()
         );
 
