@@ -20,6 +20,30 @@ final class DividedTest extends TestCase
     /**
      * @throws Exception
      */
+    public function testKeepScaleConstructor(): void
+    {
+        $this->assertEquals(
+            '1.83',
+            ($p = Divided::keepScale(
+                new FiveAndHalfDollars(),
+                '3'
+            ))->amount()
+        );
+
+        $this->assertEquals(
+            'USD',
+            $p->currency()->asString()
+        );
+
+        $this->assertEquals(
+            2,
+            $p->scale()
+        );
+    }
+
+    /**
+     * @throws Exception
+     */
     public function testAmountCurrency(): void
     {
         $this->assertEquals(
@@ -43,6 +67,11 @@ final class DividedTest extends TestCase
                 '15',
                 4
             ))->amount()
+        );
+
+        $this->assertEquals(
+            4,
+            $b->scale()
         );
 
         $this->assertEquals(

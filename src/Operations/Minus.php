@@ -18,23 +18,37 @@ final class Minus implements Money
     /**
      * @var Money
      */
-    private $origin;
+    private $money;
 
-    public function __construct(Money $origin)
+    public function __construct(Money $money)
     {
-        $this->origin = $origin;
+        $this->money = $money;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function amount(): string
     {
-        if (0 === strpos($amount = $this->origin->amount(), '-')) {
+        if (0 === strpos($amount = $this->money->amount(), '-')) {
             return ltrim($amount, '-');
         }
         return "-$amount";
     }
 
+    /**
+     * @inheritDoc
+     */
     public function currency(): Currency
     {
-        return $this->origin->currency();
+        return $this->money->currency();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function scale(): int
+    {
+        return $this->money->scale();
     }
 }

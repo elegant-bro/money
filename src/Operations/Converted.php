@@ -11,7 +11,6 @@ namespace ElegantBro\Money\Operations;
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
 use ElegantBro\Money\Ratio;
-use Exception;
 use function bcmul;
 
 final class Converted implements Money
@@ -45,8 +44,7 @@ final class Converted implements Money
     }
 
     /**
-     * @return string
-     * @throws Exception
+     * @inheritDoc
      */
     public function amount(): string
     {
@@ -59,8 +57,19 @@ final class Converted implements Money
         );
     }
 
+    /**
+     * @inheritDoc
+     */
     public function currency(): Currency
     {
         return $this->target;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function scale(): int
+    {
+        return $this->scale;
     }
 }

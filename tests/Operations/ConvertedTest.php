@@ -52,6 +52,11 @@ final class ConvertedTest extends TestCase
         );
 
         $this->assertEquals(
+            4,
+            $c->scale()
+        );
+
+        $this->assertEquals(
             'USD',
             $c->currency()->asString()
         );

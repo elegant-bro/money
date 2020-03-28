@@ -23,4 +23,9 @@ final class FiveAndHalfDollars implements Money
     {
         return new USD();
     }
+
+    public function scale(): int
+    {
+        return 2;
+    }
 }

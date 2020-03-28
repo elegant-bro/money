@@ -50,4 +50,12 @@ final class Rounded implements Money
     {
         return $this->origin->currency();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function scale(): int
+    {
+        return $this->scale;
+    }
 }

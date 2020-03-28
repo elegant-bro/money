@@ -22,6 +22,30 @@ final class MultipliedTest extends TestCase
     /**
      * @throws Exception
      */
+    public function testKeepScaleConstructor(): void
+    {
+        $this->assertEquals(
+            '2.75',
+            ($p = Multiplied::keepScale(
+                new FiveAndHalfDollars(),
+                '.5'
+            ))->amount()
+        );
+
+        $this->assertEquals(
+            2,
+            $p->scale()
+        );
+
+        $this->assertEquals(
+            'USD',
+            $p->currency()->asString()
+        );
+    }
+
+    /**
+     * @throws Exception
+     */
     public function testAmountCurrency(): void
     {
         $this->assertEquals(
@@ -36,6 +60,11 @@ final class MultipliedTest extends TestCase
         $this->assertEquals(
             'USD',
             $p->currency()->asString()
+        );
+
+        $this->assertEquals(
+            4,
+            $p->scale()
         );
 
         $this->assertEquals(
@@ -61,13 +90,12 @@ final class MultipliedTest extends TestCase
         $this->assertEquals(
             '5001885077621.010000',
             (new Multiplied(
-                new JustMoney('100', new USD()),
+                new JustMoney('100', new USD(), 2),
                 '50018850776.210100',
-                10
+                6
             ))->amount()
         );
     }
-
 
     public function testInvalidPart(): void
     {

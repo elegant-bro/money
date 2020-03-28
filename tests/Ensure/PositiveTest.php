@@ -36,6 +36,11 @@ final class PositiveTest extends TestCase
         );
 
         $this->assertEquals(
+            2,
+            $m->scale()
+        );
+
+        $this->assertEquals(
             '0',
             ($m = new Positive(
                 new ZeroBelarusRuble()
@@ -43,6 +48,9 @@ final class PositiveTest extends TestCase
         );
     }
 
+    /**
+     * @throws Exception
+     */
     public function testNotPositive(): void
     {
         $this->expectException(LogicException::class);

@@ -42,8 +42,13 @@ final class MinusTest extends TestCase
         $this->assertEquals(
             '10.46',
             ($n = new Minus(
-                new JustMoney('-10.46', new EUR())
+                new JustMoney('-10.46', new EUR(), 2)
             ))->amount()
+        );
+
+        $this->assertEquals(
+            2,
+            $n->scale()
         );
 
         $this->assertEquals(

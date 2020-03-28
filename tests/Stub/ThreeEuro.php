@@ -23,4 +23,9 @@ final class ThreeEuro implements Money
     {
         return new EUR();
     }
+
+    public function scale(): int
+    {
+        return 2;
+    }
 }

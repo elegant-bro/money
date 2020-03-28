@@ -23,4 +23,10 @@ interface Money
      * @throws Exception
      */
     public function currency(): Currency;
+
+    /**
+     * @return int
+     * @throws Exception
+     */
+    public function scale(): int;
 }

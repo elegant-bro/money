@@ -10,31 +10,40 @@ namespace ElegantBro\Money\Operations;
 
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
-use Exception;
 
 final class DiffOf implements Money
 {
     /**
      * @var SumOf
      */
-    private $origin;
+    private $money;
 
-    public function __construct(Money $x, Money $y, int $scale)
+    public function __construct(Money $x, Money $y)
     {
-        $this->origin = SumOf::two($x, new Minus($y), $scale);
+        $this->money = new SumOf($x, new Minus($y));
     }
 
     /**
-     * @return string
-     * @throws Exception
+     * @inheritDoc
      */
     public function amount(): string
     {
-        return $this->origin->amount();
+        return $this->money->amount();
     }
 
+    /**
+     * @inheritDoc
+     */
     public function currency(): Currency
     {
-        return $this->origin->currency();
+        return $this->money->currency();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function scale(): int
+    {
+        return $this->money->scale();
     }
 }
