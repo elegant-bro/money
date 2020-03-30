@@ -54,8 +54,16 @@ final class NotZeroTest extends TestCase
             '-3',
             $m->amount()
         );
+
+        $this->assertEquals(
+            2,
+            $m->scale()
+        );
     }
 
+    /**
+     * @throws Exception
+     */
     public function testZero(): void
     {
         $this->expectException(LogicException::class);

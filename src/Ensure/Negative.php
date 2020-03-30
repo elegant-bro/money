@@ -25,17 +25,31 @@ final class Negative implements Money
         $this->money = $money;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function amount(): string
     {
-        if (bccomp($a = $this->money->amount(), '0') > 0) {
+        if (bccomp($a = $this->money->amount(), '0', $this->money->scale()) > 0) {
             throw new LogicException("Amount must be negative but is $a");
         }
 
         return $a;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function currency(): Currency
     {
         return $this->money->currency();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function scale(): int
+    {
+        return $this->money->scale();
     }
 }

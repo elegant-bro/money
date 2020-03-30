@@ -24,9 +24,14 @@ final class DiffOfTest extends TestCase
         $this->assertEquals(
             '-0.2333',
             ($s = new DiffOf(
-                new JustMoney('1', new USD()),
-                new JustMoney('1.2333', new USD())
+                new JustMoney('1', new USD(), 4),
+                new JustMoney('1.2333', new USD(), 4)
             ))->amount()
+        );
+
+        $this->assertEquals(
+            4,
+            $s->scale()
         );
 
         $this->assertEquals(

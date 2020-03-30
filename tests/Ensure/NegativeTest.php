@@ -21,7 +21,7 @@ final class NegativeTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testAmountCurrency(): void
+    public function testAmountCurrencyScale(): void
     {
         $this->assertEquals(
             'RUB',
@@ -38,6 +38,11 @@ final class NegativeTest extends TestCase
         );
 
         $this->assertEquals(
+            2,
+            $m->scale()
+        );
+
+        $this->assertEquals(
             '0',
             ($m = new Negative(
                 new ZeroBelarusRuble()
@@ -45,6 +50,9 @@ final class NegativeTest extends TestCase
         );
     }
 
+    /**
+     * @throws Exception
+     */
     public function testNotNegative(): void
     {
         $this->expectException(LogicException::class);

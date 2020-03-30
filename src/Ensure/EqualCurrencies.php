@@ -26,10 +26,20 @@ final class EqualCurrencies implements Currency
     }
 
     /**
-     * @return string
-     * @throws Exception
+     * @inheritDoc
      */
     public function asString(): string
+    {
+        $test = $this->currencies[0]->asString();
+        $this->validate();
+
+        return $test;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function validate(): void
     {
         $test = $this->currencies[0]->asString();
         foreach (array_slice($this->currencies, 1) as $currency) {
@@ -37,7 +47,5 @@ final class EqualCurrencies implements Currency
                 throw new LogicException('Currencies are not equals');
             }
         }
-
-        return $test;
     }
 }

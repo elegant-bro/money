@@ -24,7 +24,7 @@ final class JustMoneyTest extends TestCase
     {
         $this->assertEquals(
             'RUB',
-            ($m = new JustMoney('100.5', new RUB()))
+            ($m = new JustMoney('100.5', new RUB(), 2))
                 ->currency()
                 ->asString()
         );
@@ -38,6 +38,6 @@ final class JustMoneyTest extends TestCase
     public function testInvalidAmount(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        new JustMoney('100foo', new USD());
+        new JustMoney('100foo', new USD(), 2);
     }
 }

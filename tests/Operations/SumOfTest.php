@@ -23,10 +23,10 @@ final class SumOfTest extends TestCase
     public function testAmountCurrency(): void
     {
         $this->assertEquals(
-            '7.7000',
+            '7.70',
             ($s = new SumOf(
-                new JustMoney('1', new USD()),
-                new JustMoney('1.2', new USD()),
+                new JustMoney('1', new USD(), 2),
+                new JustMoney('1.2', new USD(), 2),
                 new FiveAndHalfDollars()
             ))->amount()
         );

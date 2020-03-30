@@ -22,7 +22,7 @@ final class FunctionsTest extends TestCase
     {
         $this->assertEquals(
             'EUR',
-            ($m = money(100.33, 'EUR'))
+            ($m = money('100.33', 'EUR', 2))
                 ->currency()
                 ->asString()
         );
@@ -36,13 +36,13 @@ final class FunctionsTest extends TestCase
     public function testMoneyInvalidCurrency(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        money(5, 'LOL');
+        money('5', 'LOL', 0);
     }
 
     public function testMoneyInvalidAmount(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Amount must be numeric, Baz given');
-        money('Baz', 'USD');
+        money('Baz', 'USD', 2);
     }
 }

@@ -23,4 +23,9 @@ final class ZeroBelarusRuble implements Money
     {
         return new BYN();
     }
+
+    public function scale(): int
+    {
+        return 2;
+    }
 }

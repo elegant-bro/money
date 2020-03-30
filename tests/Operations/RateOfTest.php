@@ -27,7 +27,8 @@ final class RateOfTest extends TestCase
             '0.33333333',
             (new RateOf(
                 new OneRuble(),
-                new ThreeRubles()
+                new ThreeRubles(),
+                8
             ))->asNumber()
         );
     }
@@ -40,7 +41,8 @@ final class RateOfTest extends TestCase
         $this->expectException(LogicException::class);
         (new RateOf(
             new OneRuble(),
-            new ThreeEuro()
+            new ThreeEuro(),
+            8
         ))->asNumber();
     }
 }

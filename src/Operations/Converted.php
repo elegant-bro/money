@@ -11,7 +11,6 @@ namespace ElegantBro\Money\Operations;
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
 use ElegantBro\Money\Ratio;
-use Exception;
 use function bcmul;
 
 final class Converted implements Money
@@ -31,16 +30,21 @@ final class Converted implements Money
      */
     private $ratio;
 
-    public function __construct(Money $origin, Currency $target, Ratio $ratio)
+    /**
+     * @var int
+     */
+    private $scale;
+
+    public function __construct(Money $origin, Currency $target, Ratio $ratio, int $scale)
     {
         $this->origin = $origin;
         $this->target = $target;
         $this->ratio = $ratio;
+        $this->scale = $scale;
     }
 
     /**
-     * @return string
-     * @throws Exception
+     * @inheritDoc
      */
     public function amount(): string
     {
@@ -49,12 +53,23 @@ final class Converted implements Money
             $this->ratio
                 ->of($this->origin->currency(), $this->target)
                 ->asNumber(),
-            4
+            $this->scale
         );
     }
 
+    /**
+     * @inheritDoc
+     */
     public function currency(): Currency
     {
         return $this->target;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function scale(): int
+    {
+        return $this->scale;
     }
 }

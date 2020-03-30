@@ -23,4 +23,9 @@ final class ThreeRubles implements Money
     {
         return new RUB();
     }
+
+    public function scale(): int
+    {
+        return 2;
+    }
 }

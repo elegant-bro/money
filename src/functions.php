@@ -10,10 +10,11 @@ namespace ElegantBro\Money;
 
 use ElegantBro\Money\Ensure\IsoCurrency;
 
-function money($amount, string $currency): Money
+function money(string $amount, string $currency, int $scale): Money
 {
     return new JustMoney(
-        (string)$amount,
-        new IsoCurrency($currency)
+        $amount,
+        new IsoCurrency($currency),
+        $scale
     );
 }

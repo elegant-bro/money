@@ -46,8 +46,14 @@ final class ConvertedTest extends TestCase
             ($c = new Converted(
                 new ThreeRubles(),
                 new USD(),
-                $ratio
+                $ratio,
+                4
             ))->amount()
+        );
+
+        $this->assertEquals(
+            4,
+            $c->scale()
         );
 
         $this->assertEquals(
