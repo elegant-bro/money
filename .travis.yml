@@ -16,3 +16,6 @@ script:
   - vendor/bin/ecs --level psr12 check src
   - vendor/bin/phpunit
   - php check-coverage.php coverage.xml 100
+
+after_success:
+  - travis_retry php vendor/bin/php-coveralls -x ./coverage.xml -v
