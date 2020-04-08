@@ -15,4 +15,7 @@ install:
 script:
   - vendor/bin/ecs --level psr12 check src
   - vendor/bin/phpunit
-  - php check-coverage.php coverage.xml 100
+  - php check-coverage.php build/logs/clover.xml 100
+
+after_success:
+  - travis_retry php vendor/bin/php-coveralls -v
