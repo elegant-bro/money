@@ -13,6 +13,9 @@ use ElegantBro\Money\Ensure\EqualScales;
 use Exception;
 use function bccomp;
 
+/**
+ * Comparison operations are carried out relative to the left member
+ */
 final class Compare
 {
     /**
@@ -45,7 +48,7 @@ final class Compare
      * @throws Exception
      * @return bool
      */
-    public function greaterOrEquals(): bool
+    public function greaterEq(): bool
     {
         return $this->asInt() >= 0;
     }
@@ -54,7 +57,7 @@ final class Compare
      * @throws Exception
      * @return bool
      */
-    public function lessOrEquals(): bool
+    public function lessEq(): bool
     {
         return $this->asInt() <= 0;
     }
@@ -63,7 +66,7 @@ final class Compare
      * @throws Exception
      * @return bool
      */
-    public function greaterThan(): bool
+    public function greater(): bool
     {
         return $this->asInt() > 0;
     }
@@ -72,7 +75,7 @@ final class Compare
      * @throws Exception
      * @return bool
      */
-    public function lessThan(): bool
+    public function less(): bool
     {
         return $this->asInt() < 0;
     }

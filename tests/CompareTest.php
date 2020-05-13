@@ -87,10 +87,10 @@ final class CompareTest extends TestCase
         if ($expectedException) {
             $this->expectException(LogicException::class);
         }
-        $this->assertEquals($greaterThan, (new Compare($left, $right))->greaterThan(), 'expect what left greater than right');
-        $this->assertEquals($lessThan, (new Compare($left, $right))->lessThan(), 'expect what left less than right');
-        $this->assertEquals($greaterOrEquals, (new Compare($left, $right))->greaterOrEquals(), 'expect what left greater or equals than right');
-        $this->assertEquals($lessOrEquals, (new Compare($left, $right))->lessOrEquals(), 'expect what left less or equals than right');
+        $this->assertEquals($greaterThan, (new Compare($left, $right))->greater(), 'expect what left greater than right');
+        $this->assertEquals($lessThan, (new Compare($left, $right))->less(), 'expect what left less than right');
+        $this->assertEquals($greaterOrEquals, (new Compare($left, $right))->greaterEq(), 'expect what left greater or equals than right');
+        $this->assertEquals($lessOrEquals, (new Compare($left, $right))->lessEq(), 'expect what left less or equals than right');
     }
 
     public function comparisonDataProvider(): array
