@@ -27,6 +27,7 @@ final class Compare
 
     /**
      * @param Money $money
+     *
      * @return static
      */
     public static function withZero(Money $money): self
@@ -41,8 +42,44 @@ final class Compare
     }
 
     /**
-     * @return int
      * @throws Exception
+     * @return bool
+     */
+    public function greaterOrEquals(): bool
+    {
+        return $this->asInt() >= 0;
+    }
+
+    /**
+     * @throws Exception
+     * @return bool
+     */
+    public function lesserOrEquals(): bool
+    {
+        return $this->asInt() <= 0;
+    }
+
+    /**
+     * @throws Exception
+     * @return bool
+     */
+    public function greaterThan(): bool
+    {
+        return $this->asInt() > 0;
+    }
+
+    /**
+     * @throws Exception
+     * @return bool
+     */
+    public function lesserThan(): bool
+    {
+        return $this->asInt() < 0;
+    }
+
+    /**
+     * @throws Exception
+     * @return int
      */
     public function asInt(): int
     {
