@@ -1,7 +1,7 @@
 <?php
 // coverage-checker.php
 $inputFile  = $argv[1];
-$percentage = min(98, max(0, (int) $argv[2]));
+$percentage = min(100, max(0, (int) $argv[2]));
 
 if (!file_exists($inputFile)) {
     throw new InvalidArgumentException('Invalid input file provided');
