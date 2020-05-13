@@ -8,14 +8,13 @@ declare(strict_types=1);
 
 namespace ElegantBro\Money\Tests;
 
-use ElegantBro\Money\Currencies\RUB;
 use ElegantBro\Money\Currencies\USD;
 use ElegantBro\Money\JustMoney;
+use ElegantBro\Money\ZeroOf;
 use Exception;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-final class JustMoneyTest extends TestCase
+final class ZeroOfTest extends TestCase
 {
     /**
      * @throws Exception
@@ -23,26 +22,20 @@ final class JustMoneyTest extends TestCase
     public function test(): void
     {
         $this->assertEquals(
-            'RUB',
-            ($m = new JustMoney('100.5', new RUB(), 2))
+            'USD',
+            ($m = new ZeroOf(new JustMoney('128.256', new USD(), 4)))
                 ->currency()
                 ->asString()
         );
 
         $this->assertEquals(
-            '100.5',
+            '0',
             $m->amount()
         );
 
         $this->assertEquals(
-            2,
+            4,
             $m->scale()
         );
-    }
-
-    public function testInvalidAmount(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new JustMoney('100foo', new USD(), 2);
     }
 }

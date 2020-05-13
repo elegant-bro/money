@@ -9,13 +9,12 @@ declare(strict_types=1);
 namespace ElegantBro\Money\Tests;
 
 use ElegantBro\Money\Currencies\RUB;
-use ElegantBro\Money\Currencies\USD;
 use ElegantBro\Money\JustMoney;
+use ElegantBro\Money\SameAs;
 use Exception;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-final class JustMoneyTest extends TestCase
+final class SameAsTest extends TestCase
 {
     /**
      * @throws Exception
@@ -24,25 +23,19 @@ final class JustMoneyTest extends TestCase
     {
         $this->assertEquals(
             'RUB',
-            ($m = new JustMoney('100.5', new RUB(), 2))
+            ($m = new SameAs(new JustMoney('3333.44', new RUB(), 3), '10'))
                 ->currency()
                 ->asString()
         );
 
         $this->assertEquals(
-            '100.5',
+            '10',
             $m->amount()
         );
 
         $this->assertEquals(
-            2,
+            3,
             $m->scale()
         );
-    }
-
-    public function testInvalidAmount(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new JustMoney('100foo', new USD(), 2);
     }
 }

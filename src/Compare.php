@@ -25,6 +25,15 @@ final class Compare
      */
     private $right;
 
+    /**
+     * @param Money $money
+     * @return static
+     */
+    public static function withZero(Money $money): self
+    {
+        return new self($money, new ZeroOf($money));
+    }
+
     public function __construct(Money $left, Money $right)
     {
         $this->left = $left;

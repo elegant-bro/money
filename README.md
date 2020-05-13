@@ -2,13 +2,18 @@
 [![Coverage Status](https://coveralls.io/repos/github/elegant-bro/money/badge.svg?branch=master)](https://coveralls.io/github/elegant-bro/money?branch=master)
 
 # Tests
-Install dependencies
 
-`docker run --rm -ti -v $PWD:/app composer install --ignore-platform-reqs`
+#### Build container
 
-Run tests
+`docker build --build-arg VERSION=7.4 --tag elegant-bro/money:7.4 ./docker/`
 
-`docker run --rm -ti -v $PWD:/app -w /app php:7.1-cli-alpine vendor/bin/phpunit`
+#### Install dependencies
 
-Test code style
-`docker run --rm -ti -v $PWD:/app -w /app php:7.1-cli-alpine vendor/bin/ecs --level psr12 check src`
+`docker run --rm -ti -v $PWD:/app elegant-bro/money:7.4 install`
+
+#### Run tests
+
+`docker run --rm -ti -v $PWD:/app -w /app elegant-bro/money:7.4 vendor/bin/phpunit`
+
+#### Test code style
+`docker run --rm -ti -v $PWD:/app -w /app elegant-bro/money:7.4 vendor/bin/ecs --level psr12 check src`
