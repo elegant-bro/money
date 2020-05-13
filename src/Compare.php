@@ -54,7 +54,7 @@ final class Compare
      * @throws Exception
      * @return bool
      */
-    public function lesserOrEquals(): bool
+    public function lessOrEquals(): bool
     {
         return $this->asInt() <= 0;
     }
@@ -72,7 +72,7 @@ final class Compare
      * @throws Exception
      * @return bool
      */
-    public function lesserThan(): bool
+    public function lessThan(): bool
     {
         return $this->asInt() < 0;
     }

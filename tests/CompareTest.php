@@ -82,15 +82,15 @@ final class CompareTest extends TestCase
      * @throws Exception
      * @dataProvider comparisonDataProvider
      */
-    public function testHandlers(Money $left, Money $right, bool $greaterThan, bool $lesserThan, bool $greaterOrEquals, bool $lesserOrEquals, bool $expectedException = false): void
+    public function testHandlers(Money $left, Money $right, bool $greaterThan, bool $lessThan, bool $greaterOrEquals, bool $lessOrEquals, bool $expectedException = false): void
     {
         if ($expectedException) {
             $this->expectException(LogicException::class);
         }
         $this->assertEquals($greaterThan, (new Compare($left, $right))->greaterThan(), 'expect what left greater than right');
-        $this->assertEquals($lesserThan, (new Compare($left, $right))->lesserThan(), 'expect what left lesser than right');
+        $this->assertEquals($lessThan, (new Compare($left, $right))->lessThan(), 'expect what left less than right');
         $this->assertEquals($greaterOrEquals, (new Compare($left, $right))->greaterOrEquals(), 'expect what left greater or equals than right');
-        $this->assertEquals($lesserOrEquals, (new Compare($left, $right))->lesserOrEquals(), 'expect what left lesser or equals than right');
+        $this->assertEquals($lessOrEquals, (new Compare($left, $right))->lessOrEquals(), 'expect what left less or equals than right');
     }
 
     public function comparisonDataProvider(): array
@@ -100,54 +100,54 @@ final class CompareTest extends TestCase
                 money('100', 'RUB', 3), // left
                 money('100', 'RUB', 3), // right
                 false, // greaterThan
-                false, // lesserThan
+                false, // lessThan
                 true, // greaterOrEquals
-                true, // lesserOrEquals
+                true, // lessOrEquals
                 false, // expectedException
             ],
             [
                 money('101', 'RUB', 3), // left
                 money('100', 'RUB', 3), // right
                 true, // greaterThan
-                false, // lesserThan
+                false, // lessThan
                 true, // greaterOrEquals
-                false, // lesserOrEquals
+                false, // lessOrEquals
                 false, // expectedException
             ],
             [
                 money('100', 'RUB', 3), // left
                 money('101', 'RUB', 3), // right
                 false, // greaterThan
-                true, // lesserThan
+                true, // lessThan
                 false, // greaterOrEquals
-                true, // lesserOrEquals
+                true, // lessOrEquals
                 false, // expectedException
             ],
             [
                 money('-100', 'RUB', 3), // left
                 money('-101', 'RUB', 3), // right
                 true, // greaterThan
-                false, // lesserThan
+                false, // lessThan
                 true, // greaterOrEquals
-                false, // lesserOrEquals
+                false, // lessOrEquals
                 false, // expectedException
             ],
             [
                 money('100', 'RUB', 3), // left
                 money('101', 'EUR', 3), // right
                 false, // greaterThan
-                true, // lesserThan
+                true, // lessThan
                 false, // greaterOrEquals
-                true, // lesserOrEquals
+                true, // lessOrEquals
                 true, // expectedException
             ],
             [
                 money('100', 'RUB', 3), // left
                 money('101', 'RUB', 5), // right
                 false, // greaterThan
-                true, // lesserThan
+                true, // lessThan
                 false, // greaterOrEquals
-                true, // lesserOrEquals
+                true, // lessOrEquals
                 true, // expectedException
             ],
 
