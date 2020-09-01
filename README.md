@@ -15,5 +15,8 @@
 
 `docker run --rm -ti -v $PWD:/app -w /app elegant-bro/money:7.4 vendor/bin/phpunit`
 
+### Ensure coverage is 100%
+`docker run --rm -ti -v $PWD:/app -w /app elegant-bro/money:7.4 php check-coverage.php build/logs/clover.xml 100`
+
 #### Test code style
 `docker run --rm -ti -v $PWD:/app -w /app elegant-bro/money:7.4 vendor/bin/ecs --level psr12 check src`
