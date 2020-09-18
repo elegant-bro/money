@@ -43,13 +43,13 @@ final class MinOf implements Money
             throw new LogicException('Can not find minimum of empty lot');
         }
 
-        $min = '';
-        foreach ($it as $money) {
-            if ('' === $min) {
-                $min = $money->amount();
-            } else {
-                $min = bccomp($min, $current = $money->amount(), $this->scale) > 0 ? $current : $min;
-            }
+        $min = $it->current()->amount();
+        $it->next();
+        while ($it->valid()) {
+            /** @var Money $money */
+            $money = $it->current();
+            $min = bccomp($min, $current = $money->amount(), $this->scale) > 0 ? $current : $min;
+            $it->next();
         }
 
         return $min;

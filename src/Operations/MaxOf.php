@@ -43,13 +43,13 @@ final class MaxOf implements Money
             throw new LogicException('Can not find maximum of empty lot');
         }
 
-        $max = '';
-        foreach ($it as $money) {
-            if ('' === $max) {
-                $max = $money->amount();
-            } else {
-                $max = bccomp($max, $current = $money->amount(), $this->scale) < 0 ? $current : $max;
-            }
+        $max = $it->current()->amount();
+        $it->next();
+        while ($it->valid()) {
+            /** @var Money $money */
+            $money = $it->current();
+            $max = bccomp($max, $current = $money->amount(), $this->scale) < 0 ? $current : $max;
+            $it->next();
         }
 
         return $max;
