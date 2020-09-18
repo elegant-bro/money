@@ -39,17 +39,17 @@ final class MinOf implements Money
 
     public function amount(): string
     {
+        if (!($it = $this->lot->asIterator())->valid()) {
+            throw new LogicException('Can not find minimum of empty lot');
+        }
+
         $min = '';
-        foreach ($this->lot->asIterator() as $money) {
+        foreach ($it as $money) {
             if ('' === $min) {
                 $min = $money->amount();
             } else {
                 $min = bccomp($min, $current = $money->amount(), $this->scale) > 0 ? $current : $min;
             }
-        }
-
-        if ('' === $min) {
-            throw new LogicException('Can not find minimum of empty lot');
         }
 
         return $min;

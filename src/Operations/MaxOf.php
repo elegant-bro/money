@@ -39,17 +39,17 @@ final class MaxOf implements Money
 
     public function amount(): string
     {
+        if (!($it = $this->lot->asIterator())->valid()) {
+            throw new LogicException('Can not find maximum of empty lot');
+        }
+
         $max = '';
-        foreach ($this->lot->asIterator() as $money) {
+        foreach ($it as $money) {
             if ('' === $max) {
                 $max = $money->amount();
             } else {
                 $max = bccomp($max, $current = $money->amount(), $this->scale) < 0 ? $current : $max;
             }
-        }
-
-        if ('' === $max) {
-            throw new LogicException('Can not find maximum of empty lot');
         }
 
         return $max;
