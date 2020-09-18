@@ -22,7 +22,7 @@ final class SumOfTest extends TestCase
      */
     public function testAmountCurrency(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             '7.70',
             ($s = new SumOf(
                 new JustMoney('1', new USD(), 2),
@@ -31,7 +31,7 @@ final class SumOfTest extends TestCase
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             'USD',
             $s->currency()->asString()
         );

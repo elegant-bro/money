@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace ElegantBro\Money;
 
 use InvalidArgumentException;
+use function bcadd;
 use function is_numeric;
 
 final class JustMoney implements Money
@@ -43,7 +44,7 @@ final class JustMoney implements Money
      */
     public function amount(): string
     {
-        return $this->amount;
+        return bcadd($this->amount, '0', $this->scale);
     }
 
     /**

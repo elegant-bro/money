@@ -23,14 +23,14 @@ final class NotZeroTest extends TestCase
      */
     public function testPositiveAmountCurrency(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'EUR',
             ($m = new NotZero(
                 new ThreeEuro()
             ))->currency()->asString()
         );
-        
-        $this->assertEquals(
+
+        self::assertEquals(
             '3',
             $m->amount()
         );
@@ -41,7 +41,7 @@ final class NotZeroTest extends TestCase
      */
     public function testNegativeAmountCurrency(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'EUR',
             ($m = new NotZero(
                 new Minus(
@@ -50,12 +50,12 @@ final class NotZeroTest extends TestCase
             ))->currency()->asString()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '-3',
             $m->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             2,
             $m->scale()
         );

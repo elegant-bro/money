@@ -22,19 +22,19 @@ final class JustMoneyTest extends TestCase
      */
     public function test(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'RUB',
             ($m = new JustMoney('100.5', new RUB(), 2))
                 ->currency()
                 ->asString()
         );
 
-        $this->assertEquals(
-            '100.5',
+        self::assertEquals(
+            '100.50',
             $m->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             2,
             $m->scale()
         );

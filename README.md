@@ -9,7 +9,7 @@
 
 #### Install dependencies
 
-`docker run --rm -ti -v $PWD:/app elegant-bro/money:7.4 install`
+`docker run --rm -ti -v $PWD:/app elegant-bro/money:7.4 composer install`
 
 #### Run tests
 

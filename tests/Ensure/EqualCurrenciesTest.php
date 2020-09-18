@@ -22,7 +22,7 @@ final class EqualCurrenciesTest extends TestCase
      */
     public function testAsString(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'USD',
             (new EqualCurrencies(
                 new USD(),

@@ -29,19 +29,19 @@ final class ConvertedTest extends TestCase
         $ratio = $this->getMockForAbstractClass(Ratio::class);
         $ratio->expects(self::once())
             ->method('of')
-            ->with(
-                $this->callback(static function (Currency $arg) {
+            ->withConsecutive([
+                self::callback(static function (Currency $arg) {
                     return $arg->asString() === 'RUB';
                 }),
-                $this->callback(static function (Currency $arg) {
+                self::callback(static function (Currency $arg) {
                     return $arg->asString() === 'USD';
                 })
-            )
+            ])
             ->willReturn(
                 new JustNumeric('0.016')
             );
 
-        $this->assertEquals(
+        self::assertEquals(
             0.048,
             ($c = new Converted(
                 new ThreeRubles(),
@@ -51,12 +51,12 @@ final class ConvertedTest extends TestCase
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             4,
             $c->scale()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             'USD',
             $c->currency()->asString()
         );

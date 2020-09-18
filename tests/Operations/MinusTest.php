@@ -22,14 +22,14 @@ final class MinusTest extends TestCase
      */
     public function testNegativeAmountCurrency(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             '-5.5',
             ($n = new Minus(
                 new FiveAndHalfDollars()
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             'USD',
             $n->currency()->asString()
         );
@@ -39,19 +39,19 @@ final class MinusTest extends TestCase
      */
     public function testPositiveAmountCurrency(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             '10.46',
             ($n = new Minus(
                 new JustMoney('-10.46', new EUR(), 2)
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             2,
             $n->scale()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             'EUR',
             $n->currency()->asString()
         );

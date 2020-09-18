@@ -23,7 +23,7 @@ final class NegativeTest extends TestCase
      */
     public function testAmountCurrencyScale(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'RUB',
             ($m = new Negative(
                 new Minus(
@@ -31,18 +31,18 @@ final class NegativeTest extends TestCase
                 )
             ))->currency()->asString()
         );
-        
-        $this->assertEquals(
+
+        self::assertEquals(
             '-1',
             $m->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             2,
             $m->scale()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '0',
             ($m = new Negative(
                 new ZeroBelarusRuble()

@@ -39,11 +39,11 @@ final class InMemoryAmountTest extends TestCase
         );
 
         self::assertEquals(
-            '1',
+            '1.00',
             ($cached = new InMemoryAmount($origin))->amount()
         );
         self::assertEquals(
-            '1',
+            '1.00',
             $cached->amount()
         );
 
