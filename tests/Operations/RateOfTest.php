@@ -23,7 +23,7 @@ final class RateOfTest extends TestCase
      */
     public function testAsNumber(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             '0.33333333',
             (new RateOf(
                 new OneRuble(),

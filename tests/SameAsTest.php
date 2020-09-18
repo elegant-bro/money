@@ -21,19 +21,19 @@ final class SameAsTest extends TestCase
      */
     public function test(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'RUB',
             ($m = new SameAs(new JustMoney('3333.44', new RUB(), 3), '10'))
                 ->currency()
                 ->asString()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '10',
             $m->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             3,
             $m->scale()
         );

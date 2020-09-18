@@ -21,19 +21,19 @@ final class ZeroOfTest extends TestCase
      */
     public function test(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'USD',
             ($m = new ZeroOf(new JustMoney('128.256', new USD(), 4)))
                 ->currency()
                 ->asString()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '0',
             $m->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             4,
             $m->scale()
         );

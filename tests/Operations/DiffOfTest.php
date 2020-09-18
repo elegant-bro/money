@@ -21,7 +21,7 @@ final class DiffOfTest extends TestCase
      */
     public function testAmountCurrency(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             '-0.2333',
             ($s = new DiffOf(
                 new JustMoney('1', new USD(), 4),
@@ -29,12 +29,12 @@ final class DiffOfTest extends TestCase
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             4,
             $s->scale()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             'USD',
             $s->currency()->asString()
         );

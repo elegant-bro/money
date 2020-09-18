@@ -18,7 +18,7 @@ final class RoundedTest extends TestCase
      */
     public function testAmountCurrency(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             '2.0000',
             (new Rounded(
                 new JustMoney('1.99999999999', new RUB(), 12),
@@ -26,7 +26,7 @@ final class RoundedTest extends TestCase
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '1.96',
             (new Rounded(
                 new JustMoney('1.95583', new RUB(), 5),
@@ -34,7 +34,7 @@ final class RoundedTest extends TestCase
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '5.055',
             ($scaled = new Rounded(
                 new JustMoney('5.055123', new RUB(), 6),
@@ -42,7 +42,7 @@ final class RoundedTest extends TestCase
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '3',
             ($scaled = new Rounded(
                 new JustMoney('3', new RUB(), 0),
@@ -50,7 +50,7 @@ final class RoundedTest extends TestCase
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '4',
             ($scaled = new Rounded(
                 new JustMoney('3.5', new RUB(), 2),
@@ -58,7 +58,7 @@ final class RoundedTest extends TestCase
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '-4',
             ($scaled = new Rounded(
                 new JustMoney('-3.5', new RUB(), 2),
@@ -66,12 +66,12 @@ final class RoundedTest extends TestCase
             ))->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             'RUB',
             $scaled->currency()->asString()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             0,
             $scaled->scale()
         );

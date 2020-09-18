@@ -13,7 +13,7 @@ final class EqualScalesTest extends TestCase
 {
     public function testAsInt(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             3,
             (new EqualScales(3, 3, 3, 3))->asInt()
         );
@@ -22,7 +22,7 @@ final class EqualScalesTest extends TestCase
     public function testAsIntFails(): void
     {
         $this->expectException(LogicException::class);
-        $this->assertEquals(
+        self::assertEquals(
             3,
             (new EqualScales(3, 3, 4, 3))->asInt()
         );
@@ -31,7 +31,7 @@ final class EqualScalesTest extends TestCase
     public function testValidate(): void
     {
         (new EqualScales(4, 4, 4, 4))->validate();
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testValidateFails(): void

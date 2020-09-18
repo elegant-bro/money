@@ -23,24 +23,24 @@ final class PositiveTest extends TestCase
      */
     public function testAmountCurrency(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'EUR',
             ($m = new Positive(
                 new ThreeEuro()
             ))->currency()->asString()
         );
-        
-        $this->assertEquals(
+
+        self::assertEquals(
             '3',
             $m->amount()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             2,
             $m->scale()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '0',
             ($m = new Positive(
                 new ZeroBelarusRuble()

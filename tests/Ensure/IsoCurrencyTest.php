@@ -20,15 +20,15 @@ final class IsoCurrencyTest extends TestCase
      */
     public function testValidCurrency(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'USD',
             (new IsoCurrency('USD'))->asString()
         );
-        $this->assertEquals(
+        self::assertEquals(
             'RUB',
             (new IsoCurrency('RUB'))->asString()
         );
-        $this->assertEquals(
+        self::assertEquals(
             'EUR',
             (new IsoCurrency('EUR'))->asString()
         );

@@ -20,14 +20,14 @@ final class FunctionsTest extends TestCase
      */
     public function testMoney(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             'EUR',
             ($m = money('100.33', 'EUR', 2))
                 ->currency()
                 ->asString()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             '100.33',
             $m->amount()
         );

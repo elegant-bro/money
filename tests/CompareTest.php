@@ -26,7 +26,7 @@ final class CompareTest extends TestCase
      */
     public function testAsInt(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             0,
             (new Compare(
                 money('10.92', 'RUB', 2),
@@ -34,7 +34,7 @@ final class CompareTest extends TestCase
             ))->asInt()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             1,
             (new Compare(
                 money('11.92', 'RUB', 2),
@@ -42,7 +42,7 @@ final class CompareTest extends TestCase
             ))->asInt()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             -1,
             (new Compare(
                 money('10.92', 'RUB', 2),
@@ -56,21 +56,21 @@ final class CompareTest extends TestCase
      */
     public function testWithZero(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             1,
             Compare::withZero(
                 new FiveAndHalfDollars()
             )->asInt()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             -1,
             Compare::withZero(
                 new Minus(new FiveAndHalfDollars())
             )->asInt()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             0,
             Compare::withZero(
                 new JustMoney('0', new EUR(), 3)
@@ -87,10 +87,10 @@ final class CompareTest extends TestCase
         if ($expectedException) {
             $this->expectException(LogicException::class);
         }
-        $this->assertEquals($greaterThan, (new Compare($left, $right))->greater(), 'expect what left greater than right');
-        $this->assertEquals($lessThan, (new Compare($left, $right))->less(), 'expect what left less than right');
-        $this->assertEquals($greaterOrEquals, (new Compare($left, $right))->greaterEq(), 'expect what left greater or equals than right');
-        $this->assertEquals($lessOrEquals, (new Compare($left, $right))->lessEq(), 'expect what left less or equals than right');
+        self::assertEquals($greaterThan, (new Compare($left, $right))->greater(), 'expect what left greater than right');
+        self::assertEquals($lessThan, (new Compare($left, $right))->less(), 'expect what left less than right');
+        self::assertEquals($greaterOrEquals, (new Compare($left, $right))->greaterEq(), 'expect what left greater or equals than right');
+        self::assertEquals($lessOrEquals, (new Compare($left, $right))->lessEq(), 'expect what left less or equals than right');
     }
 
     public function comparisonDataProvider(): array
