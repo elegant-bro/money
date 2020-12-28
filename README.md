@@ -3,26 +3,26 @@
 [![Coverage Status](https://coveralls.io/repos/github/elegant-bro/money/badge.svg?branch=master)](https://coveralls.io/github/elegant-bro/money?branch=master)
 
 # Elegant money implementation
-This library provides classes for money manipulation using pure object-oriented approach.
+This library provides classes for money manipulation using a pure object-oriented approach.
 
 ## Yet another PHP-money, why?
-Why did we make yet another php-library for money? After all there are:
+Why did we make yet another PHP-library for money? After all, there are:
 * https://github.com/moneyphp/money
 * https://github.com/brick/money
 * https://github.com/akaunting/money
 
-But, there are disadvantages for using it in pure object-oriented development.
+But, there are disadvantages to using it in pure object-oriented development.
 
 * There are no interfaces — we can't create an object that will represent money itself.
 * All existed implementations are classes with hundreds loc and dozens of methods like `add`, `sub`,
-  `divide`, `compare` etc., which are essentially a procedural style.
+  `divide`, `compare` etc., which are essentially procedural style.
 * We can't add new functionality as there are no interfaces, and most implementations are final.
 * Eager execution — all calculations happen in construct-time as constructor's arguments should be evaluated.
 * Existed libraries hide the scale, the only thing we can control is a rounding method.
 
 ## Our solution
 * We have the `Money` interface! This implementation is not procedural DTO.
-* There is no hundreds-lines class with tens of methods. Every operation is an object implements `Money` interface.
+* There is no hundreds-lines class with tens of methods. Every operation is an object that implements the `Money` interface.
 * Lazy execution: you can construct complex expressions without immediate calculations.
 * Explicit scale to avoid ambiguous results.
 
@@ -76,7 +76,7 @@ final class UserBalance implements Money
 }
 ```
 
-Besides, you are able to create some static implementations like `TwoDollars`:
+Besides, you can create some static implementations like `TwoDollars`:
 
 ```php
 <?php
@@ -108,7 +108,7 @@ final class TwoDollars implements Money
 ```
 
 You are free to use those objects in any out-of-the-box or custom operations.
-Let sea the next example: you need some tax which is `10%` of given amount but not less than `$2`.
+Let's take a look at the following example: you need some tax which is `10%` of the given amount but not less than `$2`.
 
 This is real object-oriented solution:
 
@@ -146,7 +146,7 @@ $tax = new Tax(
 );
 ```
 
-This is shiny declarative code, but the biggest advantage is laziness. No one calculation will happen until `amount` method will be called.
+This is a shiny declarative code, but the biggest advantage is laziness. No one calculation will happen until the `amount` method will be called.
 
 Using procedural implementation like [`moneyphp/money`](https://github.com/moneyphp/money)
 you have to create some sort of ugly `MoneyHelper` with static `tax` method:
@@ -178,7 +178,7 @@ $tax = MoneyHelper::tax(
 );
 ```
 
-It is quite possible that this result will not be needed in the subsequent calculation. For example there is some
+It is quite possible that this result will not be needed in the subsequent calculation. For example, there is some
 tax-free condition, and you should check it before the tax calculation to avoid unnecessary DB-request and end up
 with temporal coupling.
 
@@ -190,9 +190,9 @@ $ composer require elegant-bro/money
 
 ## For contributors
 
-**Pass all tests locally before create pull request.**
+**Pass all tests locally before creating the pull request.**
 
-Build test container and run all tests
+Build the test container and run all tests
 ```shell
 make all
 ```
@@ -205,7 +205,7 @@ make build
 # install composer requirements
 make install
 
-# enter to the container shell
+# enter the container shell
 make shell
 
 # style check
