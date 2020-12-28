@@ -110,7 +110,7 @@ final class TwoDollars implements Money
 You are free to use those objects in any out-of-the-box or custom operations.
 Let's take a look at the following example: you need some tax which is `10%` of the given amount but not less than `$2`.
 
-This is real object-oriented solution:
+This is a real object-oriented solution:
 
 ```php
 <?php
