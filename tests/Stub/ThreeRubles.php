@@ -16,7 +16,7 @@ final class ThreeRubles implements Money
 {
     public function amount(): string
     {
-        return '3';
+        return '3.00';
     }
 
     public function currency(): Currency
