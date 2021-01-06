@@ -1,15 +1,13 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @author Pavel Stepanets <pahhan.ne@gmail.com>
- */
 
 namespace ElegantBro\Money\Ratios;
 
 use ElegantBro\Interfaces\Numeric;
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Ratio;
+
 use function call_user_func;
 
 final class FnRatio implements Ratio

@@ -1,10 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @author Pavel Stepanets <pahhan.ne@gmail.com>
- * @author Artem Dekhtyar <m@artemd.ru>
- */
 
 namespace ElegantBro\Money\Operations;
 
@@ -12,6 +8,7 @@ use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
 use Exception;
 use InvalidArgumentException;
+
 use function bccomp;
 use function bcdiv;
 use function is_numeric;
@@ -64,7 +61,7 @@ final class Divided implements Money
      */
     public function amount(): string
     {
-        return bcdiv($this->money->amount(), $this->denominator, $this->scale);
+        return bcdiv($this->money->amount(), $this->denominator, $this->scale) ?? '0';
     }
 
     /**

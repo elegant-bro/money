@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace ElegantBro\Money;
 
 final class ZeroOf implements Money

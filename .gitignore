@@ -1,4 +1,4 @@
 /.idea
 /vendor
-/build
 /coverage.xml
+/.phpunit.result.cache

@@ -1,9 +1,8 @@
 language: php
 php:
-  - '7.1'
-  - '7.2'
   - '7.3'
   - '7.4'
+  - '8.0'
 
 branches:
   only:
@@ -13,12 +12,13 @@ install:
   - composer install --dev
 
 script:
-  - vendor/bin/ecs --level psr12 check src
+  - vendor/bin/phpcs -p --standard=PSR12 src
+  - vendor/bin/phpstan analyse
   - vendor/bin/phpunit
-  - php check-coverage.php build/logs/clover.xml 100
+  - php check-coverage.php coverage.xml 100
 
 after_success:
-  - travis_retry php vendor/bin/php-coveralls -v
+  - travis_retry mkdir -p build/logs && php vendor/bin/php-coveralls -x coverage.xml -v
 
 env:
   - XDEBUG_MODE=coverage

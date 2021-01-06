@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace ElegantBro\Money;
 
 use function call_user_func;

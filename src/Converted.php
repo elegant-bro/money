@@ -6,9 +6,6 @@ namespace ElegantBro\Money;
 
 use Exception;
 
-/**
- * @author Pavel Stepanets <pahhan.ne@gmail.com>
- */
 final class Converted implements Money
 {
     /**
