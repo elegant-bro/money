@@ -10,6 +10,7 @@ namespace ElegantBro\Money\Tests\Operations;
 
 use ElegantBro\Money\Operations\Divided;
 use ElegantBro\Money\Tests\Stub\FiveAndHalfDollars;
+use ElegantBro\Money\Tests\Stub\JustNumeric;
 use ElegantBro\Money\Tests\Stub\ZeroBelarusRuble;
 use Exception;
 use InvalidArgumentException;
@@ -26,7 +27,7 @@ final class DividedTest extends TestCase
             '1.83',
             ($p = Divided::keepScale(
                 new FiveAndHalfDollars(),
-                '3'
+                new JustNumeric('3')
             ))->amount()
         );
 
@@ -50,7 +51,7 @@ final class DividedTest extends TestCase
             '1.8333',
             ($p = new Divided(
                 new FiveAndHalfDollars(),
-                '3',
+                new JustNumeric('3'),
                 4
             ))->amount()
         );
@@ -64,7 +65,7 @@ final class DividedTest extends TestCase
             '0.0000',
             ($b = new Divided(
                 new ZeroBelarusRuble(),
-                '15',
+                new JustNumeric('15'),
                 4
             ))->amount()
         );
@@ -80,17 +81,17 @@ final class DividedTest extends TestCase
         );
     }
 
-    public function testInvalidDenominator(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Denominator must be numeric, Foo given');
-        new Divided(new FiveAndHalfDollars(), 'Foo', 4);
-    }
-
+    /**
+     * @throws Exception
+     */
     public function testZeroDenominator(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Denominator must not be zero');
-        new Divided(new FiveAndHalfDollars(), '0', 4);
+        $this->expectExceptionMessage('Divisor must not be zero');
+        (new Divided(
+            new FiveAndHalfDollars(),
+            new JustNumeric('0'),
+            4
+        ))->amount();
     }
 }

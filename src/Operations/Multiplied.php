@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace ElegantBro\Money\Operations;
 
+use ElegantBro\Interfaces\Numeric as Num;
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
 use Exception;
 use InvalidArgumentException;
-
 use function bcmul;
 use function is_numeric;
 
@@ -20,7 +20,7 @@ final class Multiplied implements Money
     private $money;
 
     /**
-     * @var string
+     * @var Num
      */
     private $multiplier;
 
@@ -31,20 +31,17 @@ final class Multiplied implements Money
 
     /**
      * @param Money $money
-     * @param string $multiplier
+     * @param Num $multiplier
      * @return Multiplied
      * @throws Exception
      */
-    public static function keepScale(Money $money, string $multiplier): self
+    public static function keepScale(Money $money, Num $multiplier): self
     {
         return new self($money, $multiplier, $money->scale());
     }
 
-    public function __construct(Money $money, string $multiplier, int $scale)
+    public function __construct(Money $money, Num $multiplier, int $scale)
     {
-        if (!is_numeric($multiplier)) {
-            throw new InvalidArgumentException("Multiplier must be numeric, $multiplier given");
-        }
         $this->money = $money;
         $this->multiplier = $multiplier;
         $this->scale = $scale;
@@ -55,7 +52,10 @@ final class Multiplied implements Money
      */
     public function amount(): string
     {
-        return bcmul($this->money->amount(), $this->multiplier, $this->scale);
+        if (!is_numeric($m = $this->multiplier->asNumber())) {
+            throw new InvalidArgumentException("Multiplier must be numeric, $m given");
+        }
+        return bcmul($this->money->amount(), $m, $this->scale);
     }
 
     /**

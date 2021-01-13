@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace ElegantBro\Money\Operations;
 
+use ElegantBro\Interfaces\Numeric as Num;
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
 use Exception;
 use InvalidArgumentException;
-
-use function bccomp;
 use function bcdiv;
-use function is_numeric;
 
 final class Divided implements Money
 {
@@ -21,9 +19,9 @@ final class Divided implements Money
     private $money;
 
     /**
-     * @var string
+     * @var Numeric
      */
-    private $denominator;
+    private $divisor;
 
     /**
      * @var int
@@ -32,26 +30,18 @@ final class Divided implements Money
 
     /**
      * @param Money $money
-     * @param string $multiplier
+     * @param Num $divisor
      * @return Divided
      * @throws Exception
      */
-    public static function keepScale(Money $money, string $multiplier): self
+    public static function keepScale(Money $money, Num $divisor): self
     {
-        return new self($money, $multiplier, $money->scale());
+        return new self($money, $divisor, $money->scale());
     }
 
-    public function __construct(Money $money, string $denominator, int $scale)
+    public function __construct(Money $money, Num $divisor, int $scale)
     {
-        if (!is_numeric($denominator)) {
-            throw new InvalidArgumentException("Denominator must be numeric, $denominator given");
-        }
-        $this->denominator = $denominator;
-
-        if (bccomp($this->denominator, '0') === 0) {
-            throw new InvalidArgumentException('Denominator must not be zero');
-        }
-
+        $this->divisor = $divisor;
         $this->money = $money;
         $this->scale = $scale;
     }
@@ -61,7 +51,15 @@ final class Divided implements Money
      */
     public function amount(): string
     {
-        return bcdiv($this->money->amount(), $this->denominator, $this->scale) ?? '0';
+        if (!is_numeric($d = $this->divisor->asNumber())) {
+            throw new InvalidArgumentException("Divisor must be numeric, $d given");
+        }
+
+        if ((float)$d === 0.0) {
+            throw new InvalidArgumentException('Divisor must not be zero');
+        }
+
+        return bcdiv($this->money->amount(), $d, $this->scale) ?? '0';
     }
 
     /**

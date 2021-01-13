@@ -12,6 +12,7 @@ use ElegantBro\Money\Currencies\USD;
 use ElegantBro\Money\JustMoney;
 use ElegantBro\Money\Operations\Multiplied;
 use ElegantBro\Money\Tests\Stub\FiveAndHalfDollars;
+use ElegantBro\Money\Tests\Stub\JustNumeric;
 use ElegantBro\Money\Tests\Stub\ZeroBelarusRuble;
 use Exception;
 use InvalidArgumentException;
@@ -28,7 +29,7 @@ final class MultipliedTest extends TestCase
             '2.75',
             ($p = Multiplied::keepScale(
                 new FiveAndHalfDollars(),
-                '.5'
+                new JustNumeric('.5')
             ))->amount()
         );
 
@@ -52,7 +53,7 @@ final class MultipliedTest extends TestCase
             '2.75',
             ($p = new Multiplied(
                 new FiveAndHalfDollars(),
-                '.5',
+                new JustNumeric('.5'),
                 2
             ))->amount()
         );
@@ -71,7 +72,7 @@ final class MultipliedTest extends TestCase
             '0.0000',
             ($b = new Multiplied(
                 new ZeroBelarusRuble(),
-                '.1234',
+                new JustNumeric('.1234'),
                 4
             ))->amount()
         );
@@ -91,15 +92,22 @@ final class MultipliedTest extends TestCase
             '5001885077621.010000',
             (new Multiplied(
                 new JustMoney('100', new USD(), 2),
-                '50018850776.210100',
+                new JustNumeric('50018850776.210100'),
                 6
             ))->amount()
         );
     }
 
+    /**
+     * @throws Exception
+     */
     public function testInvalidPart(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        new Multiplied(new FiveAndHalfDollars(), '1z', 4);
+        (new Multiplied(
+            new FiveAndHalfDollars(),
+            new JustNumeric('1z'),
+            4
+        ))->amount();
     }
 }
