@@ -1,16 +1,13 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @author Pavel Stepanets <pahhan.ne@gmail.com>
- * @author Artem Dekhtyar <m@artemd.ru>
- */
 
 namespace ElegantBro\Money\Ensure;
 
 use ElegantBro\Money\Currency;
 use Exception;
 use LogicException;
+
 use function array_slice;
 
 final class EqualCurrencies implements Currency

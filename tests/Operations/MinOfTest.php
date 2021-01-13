@@ -46,7 +46,7 @@ final class MinOfTest extends TestCase
     }
 
     /**
-     * @param array $amounts
+     * @param array<array> $amounts
      * @param string $expected
      * @param int $scale
      * @throws Exception
@@ -80,6 +80,9 @@ final class MinOfTest extends TestCase
         );
     }
 
+    /**
+     * @return array<array>
+     */
     public function amounts(): array
     {
         return [

@@ -1,16 +1,13 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @author Pavel Stepanets <pahhan.ne@gmail.com>
- * @author Artem Dekhtyar <m@artemd.ru>
- */
 
 namespace ElegantBro\Money;
 
 use ElegantBro\Money\Ensure\EqualCurrencies;
 use ElegantBro\Money\Ensure\EqualScales;
 use Exception;
+
 use function bccomp;
 
 /**
@@ -31,7 +28,7 @@ final class Compare
     /**
      * @param Money $money
      *
-     * @return static
+     * @return self
      */
     public static function withZero(Money $money): self
     {

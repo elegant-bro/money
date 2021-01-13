@@ -93,6 +93,9 @@ final class CompareTest extends TestCase
         self::assertEquals($lessOrEquals, (new Compare($left, $right))->lessEq(), 'expect what left less or equals than right');
     }
 
+    /**
+     * @return array<array>
+     */
     public function comparisonDataProvider(): array
     {
         return [

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace ElegantBro\Money\Operations;
 
 use ElegantBro\Money\Currencies\LotFirstCurrency;
@@ -11,6 +10,7 @@ use ElegantBro\Money\Ensure\EqualCurrenciesLot;
 use ElegantBro\Money\Lot;
 use ElegantBro\Money\Money;
 use LogicException;
+
 use function bccomp;
 
 final class MaxOf implements Money

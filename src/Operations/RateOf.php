@@ -1,10 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @author Pavel Stepanets <pahhan.ne@gmail.com>
- * @author Artem Dekhtyar <m@artemd.ru>
- */
 
 namespace ElegantBro\Money\Operations;
 
@@ -12,6 +8,7 @@ use ElegantBro\Interfaces\Numeric;
 use ElegantBro\Money\Ensure\EqualCurrencies;
 use ElegantBro\Money\Money;
 use Exception;
+
 use function bcdiv;
 
 final class RateOf implements Numeric
@@ -49,6 +46,6 @@ final class RateOf implements Numeric
             $this->minor->currency()
         ))->asString();
 
-        return bcdiv($this->base->amount(), $this->minor->amount(), $this->scale);
+        return bcdiv($this->base->amount(), $this->minor->amount(), $this->scale) ?? '0';
     }
 }
