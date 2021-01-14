@@ -25,6 +25,7 @@ build-nc: ## Build the container without caching
 exec: build ## fall into running container
 	docker run --rm -ti -u=$(shell id -u):$(shell id -g) -e COMPOSER_HOME=/tmp -v tmpfs:/tmp -v $(CURDIR):/app:rw -w /app elegant-bro/money:$(php_version) sh
 
+
 install: build ## install library dependencies
 	$(docker) composer install
 
