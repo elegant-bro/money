@@ -6,7 +6,8 @@ php_version:=$(PHP_VERSION)
 ifndef PHP_VERSION
 	php_version:=$(default_php_version)
 endif
-docker:=docker run --rm -u=$(shell id -u):$(shell id -g) -v $(CURDIR):/app -w /app elegant-bro/money:$(php_version)
+
+docker:=docker run --rm -u=$(shell id -u):$(shell id -g) -e COMPOSER_HOME=/tmp -v tmpfs:/tmp -v $(CURDIR):/app -w /app elegant-bro/money:$(php_version)
 
 .PHONY: help
 
@@ -22,7 +23,8 @@ build-nc: ## Build the container without caching
 	docker build --no-cache --build-arg VERSION=$(php_version) --tag elegant-bro/money:$(php_version) ./docker/
 
 exec: build ## fall into running container
-	docker run --rm -ti -u=$(shell id -u):$(shell id -g) -v $(CURDIR):/app:rw -w /app elegant-bro/money:$(php_version) sh
+	docker run --rm -ti -u=$(shell id -u):$(shell id -g) -e COMPOSER_HOME=/tmp -v tmpfs:/tmp -v $(CURDIR):/app:rw -w /app elegant-bro/money:$(php_version) sh
+
 
 install: build ## install library dependencies
 	$(docker) composer install
