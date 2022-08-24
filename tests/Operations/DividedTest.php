@@ -93,4 +93,16 @@ final class DividedTest extends TestCase
         $this->expectExceptionMessage('Denominator must not be zero');
         new Divided(new FiveAndHalfDollars(), '0', 4);
     }
+
+    /**
+     * @throws Exception
+     */
+    public function testNonZeroDenominator(): void
+    {
+        self::assertEquals(
+            '55.0000',
+            (new Divided(new FiveAndHalfDollars(), '0.1', 4))
+                ->amount()
+        );
+    }
 }

@@ -8,7 +8,6 @@ use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
 use Exception;
 use InvalidArgumentException;
-
 use function bccomp;
 use function bcdiv;
 use function is_numeric;
@@ -48,7 +47,7 @@ final class Divided implements Money
         }
         $this->denominator = $denominator;
 
-        if (bccomp($this->denominator, '0') === 0) {
+        if (bccomp($this->denominator, '0', $scale) === 0) {
             throw new InvalidArgumentException('Denominator must not be zero');
         }
 
