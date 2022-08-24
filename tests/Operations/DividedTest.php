@@ -100,7 +100,7 @@ final class DividedTest extends TestCase
     public function testNonZeroDenominator(): void
     {
         self::assertEquals(
-            '55.00',
+            '55.0000',
             (new Divided(new FiveAndHalfDollars(), '0.1', 4))
                 ->amount()
         );
