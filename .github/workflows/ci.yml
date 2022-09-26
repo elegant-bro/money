@@ -7,6 +7,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.3'
+          extensions: bcmath
+
       - uses: actions/checkout@v2
 
       - uses: php-actions/composer@v5
