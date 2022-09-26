@@ -7,11 +7,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup PHP with PECL extension
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.3'
-          extensions: bcmath
 
       - uses: actions/checkout@v2
 
@@ -22,6 +17,7 @@ jobs:
         env:
           TEST_NAME: all
         with:
+          php_extensions: bcmath
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
           args: --coverage-text
