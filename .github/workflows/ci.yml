@@ -19,6 +19,7 @@ jobs:
         uses: php-actions/phpunit@v2
         env:
           TEST_NAME: all
+          XDEBUG_MODE: coverage
         with:
           php_version: "7.3"
           php_extensions: xdebug bcmath
