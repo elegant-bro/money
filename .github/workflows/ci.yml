@@ -42,3 +42,5 @@ jobs:
 
       - name: Static checks
         run: vendor/bin/phpstan analyse
+        with:
+          php_version: "7.3"
