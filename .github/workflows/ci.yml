@@ -39,3 +39,6 @@ jobs:
 
       - name: Code standard
         run: vendor/bin/phpcs -p --standard=PSR12 src
+
+      - name: Static checks
+        run: vendor/bin/phpstan analyse
