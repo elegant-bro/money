@@ -4,29 +4,27 @@ declare(strict_types=1);
 
 namespace ElegantBro\Money;
 
-use function call_user_func;
-
 final class FnMoney implements Money
 {
     /**
-     * @var callable
+     * @var callable(): string
      */
     private $amountFn;
 
     /**
-     * @var callable
+     * @var callable(): Currency
      */
     private $currencyFn;
 
     /**
-     * @var callable
+     * @var callable(): int
      */
     private $scaleFn;
 
     /**
-     * @param callable $amountFn function(): string
-     * @param callable $currencyFn function(): Currency
-     * @param callable $scaleFn function(): int
+     * @param callable(): string $amountFn
+     * @param callable(): Currency $currencyFn
+     * @param callable(): int $scaleFn
      */
     public function __construct(callable $amountFn, callable $currencyFn, callable $scaleFn)
     {
@@ -37,16 +35,16 @@ final class FnMoney implements Money
 
     public function amount(): string
     {
-        return call_user_func($this->amountFn);
+        return ($this->amountFn)();
     }
 
     public function currency(): Currency
     {
-        return call_user_func($this->currencyFn);
+        return ($this->currencyFn)();
     }
 
     public function scale(): int
     {
-        return call_user_func($this->scaleFn);
+        return ($this->scaleFn)();
     }
 }

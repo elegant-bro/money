@@ -46,7 +46,7 @@ final class MaxOfTest extends TestCase
     }
 
     /**
-     * @param array<array> $amounts
+     * @param string[] $amounts
      * @param string $expected
      * @param int $scale
      * @throws Exception

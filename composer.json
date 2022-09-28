@@ -25,8 +25,8 @@
   "require-dev": {
     "ext-simplexml": "*",
     "php-coveralls/php-coveralls": "^2.4",
-    "phpstan/phpstan": "^0.12.66",
-    "phpstan/phpstan-phpunit": "^0.12.17",
+    "phpstan/phpstan": "^1.8",
+    "phpstan/phpstan-phpunit": "^1.1",
     "phpunit/phpunit": "^9.5",
     "roave/security-advisories": "dev-latest",
     "squizlabs/php_codesniffer": "^3.5"
