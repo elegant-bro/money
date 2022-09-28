@@ -1,7 +1,7 @@
 # Simple Makefile with help
 # thanks to https://gist.github.com/mpneuried/0594963ad38e68917ef189b4e6a269db
 
-default_php_version:=7.4
+default_php_version:=7.3
 php_version:=$(PHP_VERSION)
 ifndef PHP_VERSION
 	php_version:=$(default_php_version)
