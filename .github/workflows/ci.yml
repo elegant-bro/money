@@ -33,5 +33,9 @@ jobs:
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
           args: --coverage-text
+
       - name: Check coverage
         run: php check-coverage.php coverage.xml 100
+
+      - name: Code standard
+        run: vendor/bin/phpcs -p --standard=PSR12 src
