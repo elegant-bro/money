@@ -34,6 +34,11 @@ jobs:
           configuration: phpunit.xml
           args: --coverage-text
 
+      - name: Setup PHP
+        uses: nanasess/setup-php@v3
+        with:
+          php-version: "7.3"
+
       - name: Check coverage
         run: php check-coverage.php coverage.xml 100
 
@@ -42,5 +47,3 @@ jobs:
 
       - name: Static checks
         run: vendor/bin/phpstan analyse
-        with:
-          php_version: "7.3"
