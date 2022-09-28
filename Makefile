@@ -1,7 +1,7 @@
 # Simple Makefile with help
 # thanks to https://gist.github.com/mpneuried/0594963ad38e68917ef189b4e6a269db
 
-default_php_version:=7.4
+default_php_version:=7.3
 php_version:=$(PHP_VERSION)
 ifndef PHP_VERSION
 	php_version:=$(default_php_version)
@@ -25,9 +25,11 @@ build-nc: ## Build the container without caching
 exec: build ## fall into running container
 	docker run --rm -ti -u=$(shell id -u):$(shell id -g) -e COMPOSER_HOME=/tmp -v tmpfs:/tmp -v $(CURDIR):/app:rw -w /app elegant-bro/money:$(php_version) sh
 
-
 install: build ## install library dependencies
 	$(docker) composer install
+
+composer-update: build ## Update dependencies
+	$(docker) composer update
 
 install-no-dev: build ## install library production dependencies
 	$(docker) composer install --no-dev

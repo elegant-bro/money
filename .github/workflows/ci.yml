@@ -1,0 +1,47 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - uses: php-actions/composer@v5
+        with:
+          php_version: "7.3"
+          php_extensions: bcmath
+
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v2
+        env:
+          TEST_NAME: all
+          XDEBUG_MODE: coverage
+        with:
+          php_version: "7.3"
+          php_extensions: xdebug bcmath
+          bootstrap: vendor/autoload.php
+          configuration: phpunit.xml
+          args: --coverage-text
+
+      - name: Check coverage
+        run: php check-coverage.php coverage.xml 100
+
+      - name: Code standard
+        run: vendor/bin/phpcs -p --standard=PSR12 src
+
+      - name: V
+        run: php -v
+
+      - name: Static checks
+        run: vendor/bin/phpstan analyse

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace ElegantBro\Money\Tests\Operations;
 
 use ElegantBro\Money\ArrayLot;
@@ -13,6 +12,7 @@ use ElegantBro\Money\Tests\Stub\OneRuble;
 use Exception;
 use LogicException;
 use PHPUnit\Framework\TestCase;
+
 use function ElegantBro\Money\money;
 
 final class MinOfTest extends TestCase
@@ -46,7 +46,7 @@ final class MinOfTest extends TestCase
     }
 
     /**
-     * @param array<array> $amounts
+     * @param string[] $amounts
      * @param string $expected
      * @param int $scale
      * @throws Exception

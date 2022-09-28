@@ -8,18 +8,16 @@ use ElegantBro\Interfaces\Numeric;
 use ElegantBro\Money\Currency;
 use ElegantBro\Money\Ratio;
 
-use function call_user_func;
-
 final class FnRatio implements Ratio
 {
     /**
-     * @var callable
+     * @var callable(Currency, Currency): Numeric
      */
     private $ratioFn;
 
     /**
      * FnRatio constructor.
-     * @param callable $ratioFn function(Currency $base, Currency $minor): Numeric
+     * @param callable(Currency, Currency): Numeric $ratioFn
      */
     public function __construct(callable $ratioFn)
     {
@@ -31,6 +29,6 @@ final class FnRatio implements Ratio
      */
     public function of(Currency $base, Currency $minor): Numeric
     {
-        return call_user_func($this->ratioFn, $base, $minor);
+        return ($this->ratioFn)($base, $minor);
     }
 }

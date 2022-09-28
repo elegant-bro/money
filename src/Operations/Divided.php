@@ -8,6 +8,7 @@ use ElegantBro\Money\Currency;
 use ElegantBro\Money\Money;
 use Exception;
 use InvalidArgumentException;
+
 use function bccomp;
 use function bcdiv;
 use function is_numeric;
